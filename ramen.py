@@ -50,6 +50,24 @@ async def on_ready():
 
     print("Ready to Run")
 
+@client.event
+async def on_message(message):
+    await client.process_commands(message)
+    messagecontent = message.content
+    if message.author.id == ownerid:
+        if isinstance(message.channel, discord.channel.DMChannel):
+            mychannel = discord.utils.get(client.get_all_channels(), id = 774935164634923049)
+
+            await mychannel.send(messagecontent)
+        else:
+            if messagecontent.startswith("."):
+                await message.delete()
+
+                filtermessage = messagecontent[1:]
+
+                mychannel = message.channel
+                await mychannel.send(filtermessage)
+
 ##########################################################################
 
 for filename in os.listdir("cogs"):

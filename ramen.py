@@ -17,6 +17,10 @@ intents.members = True
 client = commands.Bot(command_prefix = '?', intents=intents)
 client.remove_command('help')
 
+with open("token.txt") as f:
+    bottoken = f.read()
+    f.close()
+
 ##########################################################################
 #generalrole = discord.utils.get(ctx.guild.roles, id=661454256251076613)
 #logchannel = discord.utils.get(client.get_all_channels(), id = 753619980548833401)
@@ -65,4 +69,4 @@ async def unload(ctx, name):
         await ctx.send("Done!")
 
 
-client.run("OTAwOTA2MDg2NjIwNTk0MTg4.YXIILQ.LV1S1ARMUk5TfdAyti1ehF7Zb2c")
+client.run(bottoken)

@@ -23,37 +23,33 @@ client.remove_command('help')
 #SERVER INFO
 ownerid = 631441731350691850
 
-chanwoo = 631441731350691850
-yewon = 819734468465786891
-saji = 785135229894524959
-donggu = 543680309661663233
-hanjae = 406822771524501516
-mintchocolate = 434328592739074048
-csticker = 864745666580316170
-dohyun = 652531481767444498
-
+members = {
+    631441731350691850: "chanwoo",
+    819734468465786891: "yewon",
+    785135229894524959: "saji",
+    543680309661663233: "donggu",
+    406822771524501516: "hanjae",
+    434328592739074048: "mintchocolate",
+    864745666580316170: "csticker",
+    652531481767444498: "dohyun",
+    421557594625409024: "valentine",
+}
 ##########################################################################
 
 #USEFUL FUNCTIONS
 ##########################################################################
 
-def checkidentity(supposeid):
-    if int(supposeid) == chanwoo:
-        return "chanwoo"
-    elif int(supposeid) == yewon:
-        return "yewon"
-    elif int(supposeid) == saji:
-        return "saji"
-    elif int(supposeid) == donggu:
-        return "donggu"
-    elif int(supposeid) == hanjae:
-        return "hanjae"
-    elif int(supposeid) == mintchocolate:
-        return "mint"
-    elif int(supposeid) == csticker:
-        return "csticker"
-    elif int(supposeid) == dohyun:
-        return "dohyun"
+def checkidentity(supposeid: int):
+    """ checks identity of caller
+
+    Args:
+        supposeid (int): [ctx.author.id]
+
+    Returns:
+        [None]: [nothing]
+    """
+    if supposeid in members:
+        return members[supposeid]
     else:
         return None
 

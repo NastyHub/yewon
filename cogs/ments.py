@@ -8,14 +8,6 @@ import random
 
 from discord.utils import MAX_ASYNCIO_SECONDS
 
-intents = discord.Intents.default()
-intents.typing = True
-intents.presences = True
-intents.members = True
-
-client = commands.Bot(command_prefix = '?', intents=intents)
-client.remove_command('help')
-
 ##########################################################################
 #generalrole = discord.utils.get(ctx.guild.roles, id=661454256251076613)
 #logchannel = discord.utils.get(client.get_all_channels(), id = 753619980548833401)
@@ -93,7 +85,7 @@ class ments(commands.Cog):
         self.client = client
 
 
-    @client.command(aliases=["테스트"])
+    @commands.command(aliases=["테스트"])
     async def test(self, ctx):
         checkme = checkidentity(ctx.author.id)
         #await ctx.message.delete()
@@ -111,7 +103,7 @@ class ments(commands.Cog):
                 for i in herelist:
                     await ctx.send(i)
 
-    @client.command()
+    @commands.command()
     async def joinvc(self, ctx):
         if ctx.author.id == ownerid:
             await ctx.message.delete()
@@ -119,16 +111,31 @@ class ments(commands.Cog):
 
             await channel.connect()
 
-    @client.command()
+    @commands.command()
     async def leavevc(self, ctx):
         if ctx.author.id == ownerid:
             await ctx.message.delete()
             await ctx.voice_client.disconnect()
 
-    @client.command()
+    @commands.command()
     async def sendjson(self, ctx):
         if ctx.author.id == ownerid:
             await ctx.author.send(file=discord.File('ments/ments.json'))
+
+    @commands.command(aliases=["전송"])
+    async def dm(self, ctx, target: discord.Member, *, message):
+        await ctx.message.delete()
+
+        embed = discord.Embed(
+            title = f"📨 메세지가 도착했습니다!",
+            description = f"{message}\n```답장해도 보내지지 않으니 직접 그 사람에게 말하세용```",
+            color = discord.Color.from_rgb(255,105,180)
+        )
+        embed.set_footer(text=f"{ctx.author.name}님이 보낸 메세지")
+        try:
+            await target.send(embed=embed)
+        except:
+            await ctx.send(f"{target.mention}, 도착한 메세지가 있었지만 디엠 수신 기능이 꺼져있어 보내지 못하였습니다.")            
 
 def setup(client):
     client.add_cog(ments(client))

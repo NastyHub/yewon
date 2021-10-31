@@ -124,11 +124,14 @@ class ments(commands.Cog):
 
     @commands.command(aliases=["전송"])
     async def dm(self, ctx, target: discord.Member, *, message):
-        await ctx.message.delete()
+        try:
+            await ctx.message.delete()
+        except:
+            await ctx.send("이 명령어는 서버에서 사용해 주세요")
 
         embed = discord.Embed(
             title = f"📨 메세지가 도착했습니다!",
-            description = f"{message}\n\n```답장해도 보내지지 않으니 직접 그 사람에게 말하세용```명령어: `?전송 @유저 메세지 내용`",
+            description = f"```{message}```\n\n답장해도 보내지지 않으니 직접 그 사람에게 말하세용\n명령어: `?전송 @유저 메세지 내용`",
             color = discord.Color.from_rgb(255,105,180)
         )
         embed.set_footer(text=f"{ctx.author.name}님이 보낸 메세지")

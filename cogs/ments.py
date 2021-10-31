@@ -135,7 +135,12 @@ class ments(commands.Cog):
         try:
             await target.send(embed=embed)
         except:
-            await ctx.send(f"{target.mention}, 도착한 메세지가 있었지만 디엠 수신 기능이 꺼져있어 보내지 못하였습니다.")            
+            await ctx.send(f"{target.mention}, 도착한 메세지가 있었지만 디엠 수신 기능이 꺼져있어 보내지 못하였습니다.")   
+
+        #find channel with id = 879895499338039301
+        channel = discord.utils.get(ctx.guild.channels, id = 879895499338039301)
+        await channel.send(embed=embed)
+                 
 
 def setup(client):
     client.add_cog(ments(client))

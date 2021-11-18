@@ -91,11 +91,11 @@ class misc(commands.Cog):
         else:
 
             embed = discord.Embed(
-                title = f"{ctx.author.display_name}#{ctx.author.discriminator}",
-                description = f"받은 질문: `{question}`\n\n*질문은 가급적 __예/아니오__ 답이 나올 수 있도록 해주세요*\n\n**준비가 됐으면 8볼을 흔들어주세요!**",
+                title = f"8볼 질문",
+                description = f"받은 질문:\n```{question}```\n\n*질문은 가급적 __예/아니오__ 답이 나올 수 있도록 해주세요*\n\n**준비가 됐으면 8볼을 흔들어주세요!**",
                 color = discord.Color.from_rgb(255,255,0)
             )
-            embed.set_footer(text=f"NastyCore, The Next Innovation")
+            embed.set_footer(text=f"{ctx.author.display_name}이 물어본 질문")
             embed.set_thumbnail(url="https://media.istockphoto.com/vectors/billiard-black-eight-vector-id614744860?k=20&m=614744860&s=612x612&w=0&h=hl4EtO9_2oEzndtohCGqwUt6sxtxlvUHyhJlZ2YvVRk=")
 
             msg = await ctx.send(
@@ -140,7 +140,7 @@ class misc(commands.Cog):
                 description = f"제 대답:\n```{result}```",
                 color = discord.Color.from_rgb(0,255,0)
             )
-            newembed.set_footer(text=f"NastyCore, The Next Innovation")
+            newembed.set_footer(text=f"{ctx.author.display_name}이/가 물어본 질문")
             newembed.set_thumbnail(url="https://media.istockphoto.com/vectors/billiard-black-eight-vector-id614744860?k=20&m=614744860&s=612x612&w=0&h=hl4EtO9_2oEzndtohCGqwUt6sxtxlvUHyhJlZ2YvVRk=")
 
             await interaction.edit_origin(embed = newembed, content=interaction.user.mention)

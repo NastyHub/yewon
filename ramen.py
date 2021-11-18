@@ -1,11 +1,8 @@
 import discord
 from discord.ext import commands, tasks
 import os
-import json
 from discord.ext import commands, tasks
-import time
-import asyncio
-import random
+from discord_components import DiscordComponents, ComponentsBot, Button, component, interaction
 
 from discord.utils import MAX_ASYNCIO_SECONDS
 
@@ -14,7 +11,7 @@ intents.typing = True
 intents.presences = True
 intents.members = True
 
-client = commands.Bot(command_prefix = '?', intents=intents)
+client = ComponentsBot(command_prefix = '?', intents=intents)
 client.remove_command('help')
 
 with open("token.txt") as f:
